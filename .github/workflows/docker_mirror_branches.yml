@@ -28,7 +28,8 @@ jobs:
         run: docker login -u="${{ secrets.QUAY_USER }}" -p="${{ secrets.QUAY_PASSWORD }}" quay.io
       - name: task=branches
         run: |
-          task -t ./taskfiles/tasks/containers/mirror.yml             build             repo=alpine             repo_tag=latest             platforms=linux/amd64,linux/arm64             target_repo=quay.io/bradfordwagner/template-mirror             is_tag=false
+          
+          task -t ./taskfiles/tasks/containers/mirror.yml             build             repo=alpine             repo_tag=latest             platforms=linux/amd64,linux/arm64             target_repo=quay.io/bradfordwagner/template-mirror             target_tag=latest             is_tag=false
 
   alpine_3-19_branches:
     name: alpine:3.19
@@ -55,5 +56,6 @@ jobs:
         run: docker login -u="${{ secrets.QUAY_USER }}" -p="${{ secrets.QUAY_PASSWORD }}" quay.io
       - name: task=branches
         run: |
-          task -t ./taskfiles/tasks/containers/mirror.yml             build             repo=alpine             repo_tag=3.19             platforms=linux/amd64,linux/arm64             target_repo=quay.io/bradfordwagner/template-mirror             is_tag=false
+          
+          task -t ./taskfiles/tasks/containers/mirror.yml             build             repo=alpine             repo_tag=3.19             platforms=linux/amd64,linux/arm64             target_repo=quay.io/bradfordwagner/template-mirror             target_tag=latest             is_tag=false
 
