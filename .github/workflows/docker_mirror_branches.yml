@@ -3,7 +3,6 @@ on:
   - push
   - workflow_dispatch
 jobs:
-
   alpine_latest_branches:
     runs-on: ubuntu-latest
     steps:
@@ -26,4 +25,4 @@ jobs:
         uses: docker/setup-buildx-action@v3
       - name: task=branches
         run: |
-          task -t ./taskfiles/tasks/containers/mirror.yml             repo=alpine             repo_tag=latest             platforms=linux/amd64,linux/arm64
+          task -t ./taskfiles/tasks/containers/mirror.yml             build             repo=alpine             repo_tag=latest             platforms=linux/amd64,linux/arm64             target_repo=quay.io/bradfordwagner/template-mirror 

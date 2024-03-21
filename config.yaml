@@ -1,4 +1,4 @@
-target_mirror: quay.io/bradfordwagner/template-mirror
+target_repo: quay.io/bradfordwagner/template-mirror
 mirrors:
   - repo: alpine
     platforms:
