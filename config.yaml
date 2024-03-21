@@ -5,3 +5,8 @@ mirrors:
       - linux/amd64
       - linux/arm64
     tag: latest
+  - repo: alpine
+    platforms:
+      - linux/amd64
+      - linux/arm64
+    tag: 3.19
