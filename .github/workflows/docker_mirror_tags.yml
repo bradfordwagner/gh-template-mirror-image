@@ -30,7 +30,7 @@ jobs:
       - name: task=tags
         run: |
           
-          task -t ./taskfiles/tasks/containers/mirror.yml             build             repo=alpine             repo_tag=latest             platforms=linux/amd64,linux/arm64             target_repo=quay.io/bradfordwagner/template-mirror             target_tag=${{ github.ref }}             is_tag=true
+          task -t ./taskfiles/tasks/containers/mirror.yml             build             repo=alpine             repo_tag=latest             platforms=linux/amd64,linux/arm64             target_repo=quay.io/bradfordwagner/template-mirror             target_tag=${{ github.ref_name }}             is_tag=true
 
   alpine_3-19_tags:
     name: alpine:3.19
@@ -58,5 +58,5 @@ jobs:
       - name: task=tags
         run: |
           
-          task -t ./taskfiles/tasks/containers/mirror.yml             build             repo=alpine             repo_tag=3.19             platforms=linux/amd64,linux/arm64             target_repo=quay.io/bradfordwagner/template-mirror             target_tag=${{ github.ref }}             is_tag=true
+          task -t ./taskfiles/tasks/containers/mirror.yml             build             repo=alpine             repo_tag=3.19             platforms=linux/amd64,linux/arm64             target_repo=quay.io/bradfordwagner/template-mirror             target_tag=${{ github.ref_name }}             is_tag=true
 
