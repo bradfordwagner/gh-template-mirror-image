@@ -4,6 +4,7 @@ on:
   - workflow_dispatch
 jobs:
   alpine_latest_branches:
+    name: alpine:latest
     runs-on: ubuntu-latest
     steps:
       - name: checkout=self
@@ -29,6 +30,7 @@ jobs:
         run: |
           task -t ./taskfiles/tasks/containers/mirror.yml             build             repo=alpine             repo_tag=latest             platforms=linux/amd64,linux/arm64             target_repo=quay.io/bradfordwagner/template-mirror 
   alpine_3-19_branches:
+    name: alpine:3.19
     runs-on: ubuntu-latest
     steps:
       - name: checkout=self
