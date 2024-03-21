@@ -21,10 +21,10 @@ jobs:
         # https://github.com/docker/setup-qemu-action
       - name: qemu
         uses: docker/setup-qemu-action@v3
-      - name: docker_buildx=0.13.1
+      - name: docker_buildx=v0.13.1
         uses: docker/setup-buildx-action@v3
         with:
-          version: 0.13.1
+          version: v0.13.1
       - name: task=branches
         run: |
           task -t ./taskfiles/tasks/containers/mirror.yml             build             repo=alpine             repo_tag=latest             platforms=linux/amd64,linux/arm64             target_repo=quay.io/bradfordwagner/template-mirror 
