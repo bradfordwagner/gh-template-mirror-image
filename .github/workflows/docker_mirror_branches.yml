@@ -19,9 +19,9 @@ jobs:
           repository: bradfordwagner/taskfiles
       # Add support for more platforms with QEMU (optional)
         # https://github.com/docker/setup-qemu-action
-      - name: Set up QEMU
+      - name: qemu
         uses: docker/setup-qemu-action@v3
-      - name: Set up Docker Buildx
+      - name: docker-buildx
         uses: docker/setup-buildx-action@v3
       - name: task=branches
         run: task -t ./taskfiles/tasks/containers/hello_world.yml
