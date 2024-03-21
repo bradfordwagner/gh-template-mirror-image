@@ -30,8 +30,7 @@ mirrors:
       - linux/amd64
       - linux/arm64
     tag: mantic
-  - repo: ubuntu
+  - repo: archlinux
     platforms:
       - linux/amd64
-      - linux/arm64
-    tag: jammy
+    tag: latest
