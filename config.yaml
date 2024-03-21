@@ -10,3 +10,28 @@ mirrors:
       - linux/amd64
       - linux/arm64
     tag: '3.19'
+  - repo: debian
+    platforms:
+      - linux/amd64
+      - linux/arm64
+    tag: bookworm
+  - repo: debian
+    platforms:
+      - linux/amd64
+      - linux/arm64
+    tag: bullseye
+  - repo: ubuntu
+    platforms:
+      - linux/amd64
+      - linux/arm64
+    tag: noble
+  - repo: ubuntu
+    platforms:
+      - linux/amd64
+      - linux/arm64
+    tag: mantic
+  - repo: ubuntu
+    platforms:
+      - linux/amd64
+      - linux/arm64
+    tag: jammy
