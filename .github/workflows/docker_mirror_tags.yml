@@ -19,4 +19,4 @@ jobs:
         with:
           verb: call
           module: github.com/bradfordwagner/dagger-modules/container_mirror@feature/init
-          args: product src=.
+          args: product --src=.
