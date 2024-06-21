@@ -25,11 +25,11 @@ jobs:
     runs-on: arm64
     permissions: write-all
     needs: config-yaml
-    # name: ${{ matrix.product.repo }}-${{ matrix.product.tag }} (${{ matrix.product.arch }})
-    # strategy:
-    #   fail-fast: false
-    #   matrix:
-    #     product: ${{ fromJSON(needs.config-yaml.outputs.product) }}
+    name: ${{ matrix.product.repo }}-${{ matrix.product.tag }} (${{ matrix.product.arch }})
+    strategy:
+      fail-fast: false
+      matrix:
+        product: ${{ fromJSON(needs.config-yaml.outputs.product) }}
     steps:
       - name: task=tags
         run: |
