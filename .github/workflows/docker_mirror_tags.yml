@@ -14,9 +14,9 @@ jobs:
       # - name: export=config
       #   id: config
       #   run: echo "config=$(yq -oj '.' config.yaml | jq -cr)" >> $GITHUB_OUTPUT
-      - name: Hello
+      - name: dagger=product
         uses: dagger/dagger-for-github@v5
         with:
           verb: call
-          module: github.com/bradfordwagner/dagger-modules/container_mirror#feature/init
+          module: github.com/bradfordwagner/dagger-modules/container_mirror@feature/init
           args: product src=.
