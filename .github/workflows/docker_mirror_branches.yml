@@ -32,4 +32,4 @@ jobs:
     steps:
       - name: task=branches
         run: |
-          echo ${{ matrix.product }}
+          echo hi
