@@ -33,4 +33,4 @@ jobs:
     steps:
       - name: task=tags
         run: |
-          echo hi: ${{ fromJSON(needs.config-yaml.outputs.product) }}
+          echo hi: ${{ needs.config-yaml.outputs.product }}
