@@ -1,10 +1,10 @@
 # created by init task for use with github actons
 target_repo: ghcr.io/bradfordwagner/template-mirror
 builds:
-  - { repo: alpine    , tag: '3.19'   , platforms: [linux/amd64    , linux/arm64] }
-  - { repo: alpine    , tag: '3.18'   , platforms: [linux/amd64    , linux/arm64] }
-  - { repo: debian    , tag: bookworm , platforms: [linux/amd64    , linux/arm64] }
-  - { repo: debian    , tag: bullseye , platforms: [linux/amd64    , linux/arm64] }
-  - { repo: ubuntu    , tag: noble    , platforms: [linux/amd64    , linux/arm64] }
-  - { repo: ubuntu    , tag: mantic   , platforms: [linux/amd64    , linux/arm64] }
-  - { repo: archlinux , tag: latest   , platforms: [linux/amd64] }
+  - { repo: alpine    , tag: '3.19'   , archs: [linux/amd64    , linux/arm64] }
+  - { repo: alpine    , tag: '3.18'   , archs: [linux/amd64    , linux/arm64] }
+  - { repo: debian    , tag: bookworm , archs: [linux/amd64    , linux/arm64] }
+  - { repo: debian    , tag: bullseye , archs: [linux/amd64    , linux/arm64] }
+  - { repo: ubuntu    , tag: noble    , archs: [linux/amd64    , linux/arm64] }
+  - { repo: ubuntu    , tag: mantic   , archs: [linux/amd64    , linux/arm64] }
+  - { repo: archlinux , tag: latest   , archs: [linux/amd64] }
