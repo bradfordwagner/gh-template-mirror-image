@@ -17,7 +17,7 @@ jobs:
         run: |
           curl -L https://dl.dagger.io/dagger/install.sh | DAGGER_VERSION=0.11.8 sh
       - name: dagger=product
-        id: products
+        id: config
         run: |
           echo products=$(./bin/dagger -m github.com/bradfordwagner/dagger-modules/container_mirror@feature/init call product --src=.) >> $GITHUB_OUTPUT
   branches:
