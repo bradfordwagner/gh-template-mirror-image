@@ -7,7 +7,7 @@ jobs:
     name: config.yaml
     runs-on: arm64
     outputs:
-      products: ${{ steps.config.outputs.products }}
+      product: ${{ steps.config.outputs.product }}
     steps:
       - uses: actions/checkout@v4
       # - name: export=config
@@ -19,7 +19,7 @@ jobs:
       - name: dagger=product
         id: config
         run: |
-          echo products=$(./bin/dagger -m github.com/bradfordwagner/dagger-modules/container_mirror@feature/init call product --src=.) >> $GITHUB_OUTPUT
+          echo product=$(./bin/dagger -m github.com/bradfordwagner/dagger-modules/container_mirror@feature/init call product --src=.) >> $GITHUB_OUTPUT
   branches:
     runs-on: arm64
     permissions: write-all
@@ -28,7 +28,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        build: ${{ fromJSON(needs.config-yaml.outputs.products) }}
+        build: ${{ fromJSON(needs.config-yaml.outputs.product) }}
     steps:
       - name: task=branches
         run: |
