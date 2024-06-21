@@ -28,7 +28,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        build: ${{ fromJSON(needs.config-yaml.outputs.product) }}
+        product: ${{ fromJSON(needs.config-yaml.outputs.product) }}
     steps:
       - name: task=branches
         run: |
