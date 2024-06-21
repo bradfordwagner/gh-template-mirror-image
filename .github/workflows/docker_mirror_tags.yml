@@ -21,7 +21,8 @@ jobs:
         id: product
         run: |
           export product=$(./bin/dagger -m github.com/bradfordwagner/dagger-modules/container_mirror@feature/init call product --src=.)
-          echo "product=" >> $GITHUB_OUTPUT
+          echo "product="
+          # echo "product=" >> $GITHUB_OUTPUT
   tags:
     runs-on: arm64
     permissions: write-all
