@@ -4,7 +4,7 @@ on:
     tags:
       - '*'
 env:
-  version: $${{ github.ref_name }}
+  version: ${{ github.ref_name }}
 jobs:
   config-yaml:
     name: config.yaml

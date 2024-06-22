@@ -3,7 +3,7 @@ on:
   - push
   - workflow_dispatch
 env:
-  version: 
+  version: latest
 jobs:
   config-yaml:
     name: config.yaml
