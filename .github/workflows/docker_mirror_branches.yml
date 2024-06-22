@@ -2,6 +2,8 @@ name: docker-mirror-branches
 on:
   - push
   - workflow_dispatch
+env:
+  version: 
 jobs:
   config-yaml:
     name: config.yaml
@@ -42,7 +44,7 @@ jobs:
       - name: dagger=build
         id: config
         run: |
-          ./bin/dagger -m github.com/bradfordwagner/dagger-modules/container_mirror@feature/init call build             --src=.             --index=${{ matrix.product.index }}             --version=latest             --isDev=false
+          ./bin/dagger -m github.com/bradfordwagner/dagger-modules/container_mirror@feature/init call build             --src=.             --index=${{ matrix.product.index }}             --version=${version}             --isDev=false
   manifest:
     runs-on: arm64
     permissions: write-all
