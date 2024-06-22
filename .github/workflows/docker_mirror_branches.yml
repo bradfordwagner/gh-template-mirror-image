@@ -32,6 +32,13 @@ jobs:
       - name: dagger=install
         run: |
           curl -L https://dl.dagger.io/dagger/install.sh | DAGGER_VERSION=0.11.8 sh
+      
+      - uses: docker/login-action@v3
+        name: login=ghcr.io
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ github.token }}
       - name: dagger=build
         id: config
         run: |
