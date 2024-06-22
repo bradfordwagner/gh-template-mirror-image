@@ -4,8 +4,6 @@ on:
   - workflow_dispatch
 env:
   version: latest
-  actor: ${{ github.actor }}
-  token: ${{ github.token }}
 jobs:
   config-yaml:
     name: config.yaml
@@ -56,6 +54,9 @@ jobs:
     permissions: write-all
     needs: builds
     name: manifest
+    env:
+      actor: ${{ github.actor }}
+      token: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
       - name: dagger=install
@@ -68,4 +69,4 @@ jobs:
             --src=. \
             --version=${version} \
             --actor=env:actor \
-          --token=env:token
+            --token=env:token

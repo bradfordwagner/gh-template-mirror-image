@@ -5,8 +5,6 @@ on:
       - '*'
 env:
   version: ${{ github.ref_name }}
-  actor: ${{ github.actor }}
-  token: ${{ github.token }}
 jobs:
   config-yaml:
     name: config.yaml
@@ -57,6 +55,9 @@ jobs:
     permissions: write-all
     needs: builds
     name: manifest
+    env:
+      actor: ${{ github.actor }}
+      token: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
       - name: dagger=install
@@ -69,4 +70,4 @@ jobs:
             --src=. \
             --version=${version} \
             --actor=env:actor \
-          --token=env:token
+            --token=env:token
