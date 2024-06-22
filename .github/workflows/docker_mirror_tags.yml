@@ -29,20 +29,10 @@ jobs:
       matrix:
         product: ${{ fromJSON(needs.config-yaml.outputs.product) }}
     steps:
-      - name: checkout=self
-        uses: actions/checkout@v4
-      - name: task=latest
+      - uses: actions/checkout@v4
+      - name: dagger=install
         run: |
-          sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d
-          export PATH=$(pwd)/bin:$PATH
-      - name: task=version
-        run: ./bin/task --version
-      - name: checkout=taskfiles@feature/arm
-        uses: actions/checkout@v4
-        with:
-          path: taskfiles
-          repository: bradfordwagner/taskfiles
-          ref: feature/arm
+          curl -L https://dl.dagger.io/dagger/install.sh | DAGGER_VERSION=0.11.8 sh
       - name: task=tags
         run: |
           echo hi: '${{ toJson(matrix.product) }}'
