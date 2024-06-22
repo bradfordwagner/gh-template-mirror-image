@@ -4,6 +4,8 @@ on:
   - workflow_dispatch
 env:
   version: latest
+  actor: ${{ github.actor }}
+  token: ${{ github.token }}
 jobs:
   config-yaml:
     name: config.yaml
@@ -65,5 +67,5 @@ jobs:
           ./bin/dagger -m github.com/bradfordwagner/dagger-modules/container_mirror@feature/init call manifest \
             --src=. \
             --version=${version} \
-            --actor=${{ github.actor }} \
-            --token=${{ github.token }}
+            --actor=env:actor \
+          --token=env:token
