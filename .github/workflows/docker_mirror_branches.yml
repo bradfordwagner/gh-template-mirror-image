@@ -32,4 +32,4 @@ jobs:
     steps:
       - name: task=branches
         run: |
-          echo hi: ${{ matrix.product }}
+          echo hi: ${{ toJson(matrix.product) }}
