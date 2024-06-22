@@ -44,7 +44,11 @@ jobs:
       - name: dagger=build
         id: config
         run: |
-          ./bin/dagger -m github.com/bradfordwagner/dagger-modules/container_mirror@feature/init call build             --src=.             --index=${{ matrix.product.index }}             --version=${version}             --isDev=false
+          ./bin/dagger -m github.com/bradfordwagner/dagger-modules/container_mirror@feature/init call build \
+            --src=. \
+            --index=${{ matrix.product.index }} \
+            --version=${version} \
+            --isDev=false
   manifest:
     runs-on: arm64
     permissions: write-all
@@ -58,4 +62,8 @@ jobs:
       - name: dagger=manifest
         id: config
         run: |
-          ./bin/dagger -m github.com/bradfordwagner/dagger-modules/container_mirror@feature/init call manifest             --src=.             --version=${version}             --actor=${{ github.actor }}             --token=${{ github.token }}
+          ./bin/dagger -m github.com/bradfordwagner/dagger-modules/container_mirror@feature/init call manifest \
+            --src=. \
+            --version=${version} \
+            --actor=${{ github.actor }} \
+            --token=${{ github.token }}
