@@ -19,8 +19,8 @@ jobs:
         id: config
         run: |
           echo product=$(./bin/dagger -m github.com/bradfordwagner/dagger-modules/container_mirror@feature/init call product-json --src=.) >> $GITHUB_OUTPUT
-  tags:
-    runs-on: arm64
+  builds:
+    runs-on: ${{ matrix.product.runner }}
     permissions: write-all
     needs: config-yaml
     name: ${{ matrix.product.index }}:${{ matrix.product.repo }}-${{ matrix.product.tag }} (${{ matrix.product.arch }})
@@ -36,7 +36,4 @@ jobs:
       - name: dagger=build
         id: config
         run: |
-          ./bin/dagger -m github.com/bradfordwagner/dagger-modules/container_mirror@feature/init call build --src=.
-      - name: task=tags
-        run: |
-          echo hi: '${{ toJson(matrix.product) }}'
+          ./bin/dagger -m github.com/bradfordwagner/dagger-modules/container_mirror@feature/init call build             --src=.             --index=${{ matrix.product.index }}             --version=${{ github.ref_name }}
