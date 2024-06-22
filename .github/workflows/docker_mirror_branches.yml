@@ -46,7 +46,7 @@ jobs:
   manifest:
     runs-on: arm64
     permissions: write-all
-    needs: build
+    needs: builds
     name: manifest
     steps:
       - run: echo hi friends
