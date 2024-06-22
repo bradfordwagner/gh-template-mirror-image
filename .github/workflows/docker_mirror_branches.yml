@@ -24,7 +24,7 @@ jobs:
     runs-on: arm64
     permissions: write-all
     needs: config-yaml
-    name: ${{ matrix.product.repo }}-${{ matrix.product.tag }} (${{ matrix.product.arch }})
+    name: ${{ matrix.product.index }}:${{ matrix.product.repo }}-${{ matrix.product.tag }} (${{ matrix.product.arch }})
     strategy:
       fail-fast: false
       matrix:
