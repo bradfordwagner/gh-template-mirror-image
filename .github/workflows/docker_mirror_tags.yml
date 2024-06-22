@@ -33,4 +33,4 @@ jobs:
     steps:
       - name: task=tags
         run: |
-          echo hi: ${{ toJson(matrix.product) }}
+          echo hi: '${{ toJson(matrix.product) }}'
