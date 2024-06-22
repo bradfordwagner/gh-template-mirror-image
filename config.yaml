@@ -5,32 +5,32 @@ builds:
       archs:
         - linux/amd64
         - linux/arm64
-    - repo: alpine
-      tag: "3.19"
-      archs:
-        - linux/amd64
-        - linux/arm64
-    - repo: archlinux
-      tag: latest
-      archs:
-        - linux/amd64
-    - repo: debian
-      tag: bookworm
-      archs:
-        - linux/amd64
-        - linux/arm64
-    - repo: debian
-      tag: bullseye
-      archs:
-        - linux/amd64
-        - linux/arm64
-    - repo: ubuntu
-      tag: mantic
-      archs:
-        - linux/amd64
-        - linux/arm64
-    - repo: ubuntu
-      tag: noble
-      archs:
-        - linux/amd64
-        - linux/arm64
+    # - repo: alpine
+    #   tag: "3.19"
+    #   archs:
+    #     - linux/amd64
+    #     - linux/arm64
+    # - repo: archlinux
+    #   tag: latest
+    #   archs:
+    #     - linux/amd64
+    # - repo: debian
+    #   tag: bookworm
+    #   archs:
+    #     - linux/amd64
+    #     - linux/arm64
+    # - repo: debian
+    #   tag: bullseye
+    #   archs:
+    #     - linux/amd64
+    #     - linux/arm64
+    # - repo: ubuntu
+    #   tag: mantic
+    #   archs:
+    #     - linux/amd64
+    #     - linux/arm64
+    # - repo: ubuntu
+    #   tag: noble
+    #   archs:
+    #     - linux/amd64
+    #     - linux/arm64
