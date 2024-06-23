@@ -54,7 +54,7 @@ jobs:
     runs-on: arm64
     permissions: write-all
     needs: builds
-    name: manifest
+    name: Manifest
     env:
       actor: ${{ github.actor }}
       token: ${{ github.token }}
