@@ -37,13 +37,13 @@ builds:
         - linux/arm64
     - repo: rockylinux
       repo_override: ""
-      tag: "9"
+      tag: "8"
       archs:
         - linux/amd64
         - linux/arm64
     - repo: rockylinux
       repo_override: ""
-      tag: "8"
+      tag: "9"
       archs:
         - linux/amd64
         - linux/arm64
