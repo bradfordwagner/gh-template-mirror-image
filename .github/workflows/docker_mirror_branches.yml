@@ -16,15 +16,15 @@ jobs:
       product: ${{ steps.config.outputs.product }}
     steps:
       - uses: actions/checkout@v4
-      - name: dagger=0.11.8
+      - name: dagger=0.12.0
         run: |
-          curl -L https://dl.dagger.io/dagger/install.sh | DAGGER_VERSION=0.11.8 sh
+          curl -L https://dl.dagger.io/dagger/install.sh | DAGGER_VERSION=0.12.0 sh
       - name: dagger=product
         id: config
         run: |
           # write your own scoped version of the following since  is not available at this base level
           # echo product=$(./bin/dagger -m  call product-json --src=. --version=${{ env.version }}) >> $GITHUB_OUTPUT
-          echo product=$(./bin/dagger -m github.com/bradfordwagner/dagger-modules/container_mirror@main call product-json --src=. --version=${version}) >> $GITHUB_OUTPUT
+          echo product=$(./bin/dagger -m github.com/bradfordwagner/dagger-modules/container_mirror@feature/0.12 call product-json --src=. --version=${version}) >> $GITHUB_OUTPUT
   builds:
     runs-on: ${{ matrix.product.runner }}
     permissions: write-all
@@ -36,9 +36,9 @@ jobs:
         product: ${{ fromJSON(needs.product.outputs.product) }}
     steps:
       - uses: actions/checkout@v4
-      - name: dagger=0.11.8
+      - name: dagger=0.12.0
         run: |
-          curl -L https://dl.dagger.io/dagger/install.sh | DAGGER_VERSION=0.11.8 sh
+          curl -L https://dl.dagger.io/dagger/install.sh | DAGGER_VERSION=0.12.0 sh
       
       # work around other runner's logging out removing credentials
       # https://github.com/docker/login-action/issues/173#issuecomment-1079688020
@@ -57,7 +57,7 @@ jobs:
       - name: dagger=build
         id: config
         run: |
-          ./bin/dagger -m github.com/bradfordwagner/dagger-modules/container_mirror@main call build \
+          ./bin/dagger -m github.com/bradfordwagner/dagger-modules/container_mirror@feature/0.12 call build \
             --src=. \
             --index=${{ matrix.product.index }} \
             --version=${version} \
@@ -72,9 +72,9 @@ jobs:
       token: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
-      - name: dagger=0.11.8
+      - name: dagger=0.12.0
         run: |
-          curl -L https://dl.dagger.io/dagger/install.sh | DAGGER_VERSION=0.11.8 sh
+          curl -L https://dl.dagger.io/dagger/install.sh | DAGGER_VERSION=0.12.0 sh
       # work around other runner's logging out removing credentials
       # https://github.com/docker/login-action/issues/173#issuecomment-1079688020
       - name: Set DOCKER_CONFIG
@@ -92,7 +92,7 @@ jobs:
       - name: dagger=manifest
         id: config
         run: |
-          ./bin/dagger -m github.com/bradfordwagner/dagger-modules/container_mirror@main call manifest \
+          ./bin/dagger -m github.com/bradfordwagner/dagger-modules/container_mirror@feature/0.12 call manifest \
             --src=. \
             --version=${version} \
             --actor=env:actor \
