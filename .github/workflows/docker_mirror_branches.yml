@@ -16,9 +16,9 @@ jobs:
       product: ${{ steps.config.outputs.product }}
     steps:
       - uses: actions/checkout@v4
-      - name: dagger=0.11.8
+      - name: dagger=0.13.3
         run: |
-          curl -L https://dl.dagger.io/dagger/install.sh | DAGGER_VERSION=0.11.8 sh
+          curl -L https://dl.dagger.io/dagger/install.sh | DAGGER_VERSION=0.13.3 sh
       - name: dagger=product
         id: config
         run: |
@@ -36,9 +36,9 @@ jobs:
         product: ${{ fromJSON(needs.product.outputs.product) }}
     steps:
       - uses: actions/checkout@v4
-      - name: dagger=0.11.8
+      - name: dagger=0.13.3
         run: |
-          curl -L https://dl.dagger.io/dagger/install.sh | DAGGER_VERSION=0.11.8 sh
+          curl -L https://dl.dagger.io/dagger/install.sh | DAGGER_VERSION=0.13.3 sh
       
       # work around other runner's logging out removing credentials
       # https://github.com/docker/login-action/issues/173#issuecomment-1079688020
@@ -72,9 +72,9 @@ jobs:
       token: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
-      - name: dagger=0.11.8
+      - name: dagger=0.13.3
         run: |
-          curl -L https://dl.dagger.io/dagger/install.sh | DAGGER_VERSION=0.11.8 sh
+          curl -L https://dl.dagger.io/dagger/install.sh | DAGGER_VERSION=0.13.3 sh
       # work around other runner's logging out removing credentials
       # https://github.com/docker/login-action/issues/173#issuecomment-1079688020
       - name: Set DOCKER_CONFIG
