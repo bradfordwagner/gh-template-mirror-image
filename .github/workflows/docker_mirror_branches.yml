@@ -58,6 +58,7 @@ jobs:
         id: config
         run: |
           ./bin/dagger -m github.com/bradfordwagner/dagger-modules/container_mirror@main call build \
+            --progress=plain \
             --src=. \
             --index=${{ matrix.product.index }} \
             --version=${version} \
