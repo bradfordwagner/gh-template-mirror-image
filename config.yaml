@@ -60,9 +60,9 @@ builds:
       archs:
         - linux/amd64
         - linux/arm64
-    - repo: ubuntu
-      repo_override: ""
-      tag: plucky
-      archs:
-        - linux/amd64
-        - linux/arm64
+    # - repo: ubuntu
+    #   repo_override: ""
+    #   tag: plucky
+    #   archs:
+    #     - linux/amd64
+    #     - linux/arm64

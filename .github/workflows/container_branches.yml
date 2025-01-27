@@ -16,10 +16,6 @@ jobs:
       product: ${{ steps.config.outputs.product }}
     steps:
       - uses: actions/checkout@v4
-      # - name: Install Act dependencies
-      #   if: ${{ env.ACT }}
-      #   run: |
-      #     apt-get update && apt-get install sudo curl -y
       - name: dagger=0.15.2
         run: |
           curl -L https://dl.dagger.io/dagger/install.sh | DAGGER_VERSION=0.15.2 sh
@@ -40,10 +36,6 @@ jobs:
         product: ${{ fromJSON(needs.product.outputs.product) }}
     steps:
       - uses: actions/checkout@v4
-      # - name: Install Act dependencies
-      #   if: ${{ env.ACT }}
-      #   run: |
-      #     apt-get update && apt-get install sudo curl -y
       - name: dagger=0.15.2
         run: |
           curl -L https://dl.dagger.io/dagger/install.sh | DAGGER_VERSION=0.15.2 sh
@@ -80,10 +72,6 @@ jobs:
       token: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
-      # - name: Install Act dependencies
-      #   if: ${{ env.ACT }}
-      #   run: |
-      #     apt-get update && apt-get install sudo curl -y
       - name: dagger=0.15.2
         run: |
           curl -L https://dl.dagger.io/dagger/install.sh | DAGGER_VERSION=0.15.2 sh
@@ -104,6 +92,7 @@ jobs:
       - name: dagger=manifest
         id: config
         run: |
+          set -x
           ./bin/dagger -m https://github.com/bradfordwagner/dagger-container-builds@feature/init call manifest \
             --src=. \
             --version=${version} \

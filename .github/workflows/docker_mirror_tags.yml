@@ -1,4 +1,4 @@
-name: container-tags
+name: docker-mirror-tags
 on:
   push:
     tags:
@@ -19,9 +19,9 @@ jobs:
       - name: dagger=product
         id: config
         run: |
-          # write your own scoped version of the following since https://github.com/bradfordwagner/dagger-container-builds@feature/init is not available at this base level
-          set -x
-          echo product=$(./bin/dagger -m https://github.com/bradfordwagner/dagger-container-builds@feature/init call product-json --src=. --version=${{ env.version }}) >> $GITHUB_OUTPUT
+          # write your own scoped version of the following since  is not available at this base level
+          # echo product=$(./bin/dagger -m  call product-json --src=. --version=${{ env.version }}) >> $GITHUB_OUTPUT
+          echo product=$(./bin/dagger -m github.com/bradfordwagner/dagger-modules/container_mirror@main call product-json --src=. --version=${version}) >> $GITHUB_OUTPUT
   builds:
     runs-on: ${{ matrix.product.runner }}
     permissions: write-all
@@ -54,13 +54,14 @@ jobs:
       - name: dagger=build
         id: config
         run: |
-          echo ./bin/dagger -m https://github.com/bradfordwagner/dagger-container-builds@feature/init call build \
+          ./bin/dagger -m github.com/bradfordwagner/dagger-modules/container_mirror@main call build \
             --progress=plain \
             --src=. \
             --index=${{ matrix.product.index }} \
-            --version=${version}
+            --version=${version} \
+            --isDev=false
   manifest:
-    runs-on: ubuntu-latest
+    runs-on: arm64
     permissions: write-all
     needs: builds
     name: manifest-tool
@@ -89,8 +90,7 @@ jobs:
       - name: dagger=manifest
         id: config
         run: |
-          set -x
-          ./bin/dagger -m https://github.com/bradfordwagner/dagger-container-builds@feature/init call manifest \
+          ./bin/dagger -m github.com/bradfordwagner/dagger-modules/container_mirror@main call manifest \
             --src=. \
             --version=${version} \
             --actor=env:actor \
