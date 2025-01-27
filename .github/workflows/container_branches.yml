@@ -1,0 +1,111 @@
+name: container-branches
+on:
+  push:
+    branches:
+      - '**'
+    tags-ignore:
+      - '**'
+  workflow_dispatch: {}
+env:
+  version: latest
+jobs:
+  product:
+    name: product
+    runs-on: ubuntu-latest
+    outputs:
+      product: ${{ steps.config.outputs.product }}
+    steps:
+      - uses: actions/checkout@v4
+      # - name: Install Act dependencies
+      #   if: ${{ env.ACT }}
+      #   run: |
+      #     apt-get update && apt-get install sudo curl -y
+      - name: dagger=0.15.2
+        run: |
+          curl -L https://dl.dagger.io/dagger/install.sh | DAGGER_VERSION=0.15.2 sh
+      - name: dagger=product
+        id: config
+        run: |
+          # write your own scoped version of the following since ./dagger_modules is not available at this base level
+          set -x
+          echo product=$(./bin/dagger -m ./dagger_modules call product-json --src=. --version=${{ env.version }}) >> $GITHUB_OUTPUT
+  builds:
+    runs-on: ${{ matrix.product.runner }}
+    permissions: write-all
+    needs: product
+    name: ${{ matrix.product.index }}:${{ matrix.product.repo }}-${{ matrix.product.tag }} (${{ matrix.product.arch }})
+    strategy:
+      fail-fast: false
+      matrix:
+        product: ${{ fromJSON(needs.product.outputs.product) }}
+    steps:
+      - uses: actions/checkout@v4
+      # - name: Install Act dependencies
+      #   if: ${{ env.ACT }}
+      #   run: |
+      #     apt-get update && apt-get install sudo curl -y
+      - name: dagger=0.15.2
+        run: |
+          curl -L https://dl.dagger.io/dagger/install.sh | DAGGER_VERSION=0.15.2 sh
+      
+      # work around other runner's logging out removing credentials
+      # https://github.com/docker/login-action/issues/173#issuecomment-1079688020
+      - name: Set DOCKER_CONFIG
+        run: |
+          id=docker_configs/${RANDOM}
+          mkdir -p $HOME/${id}/.docker
+          echo "DOCKER_CONFIG=$HOME/${id}/.docker" >> $GITHUB_ENV
+      - uses: docker/login-action@v3
+        name: login=ghcr.io
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          logout: false
+      - name: dagger=build
+        id: config
+        run: |
+          echo ./bin/dagger -m ./dagger_modules call build \
+            --progress=plain \
+            --src=. \
+            --index=${{ matrix.product.index }} \
+            --version=${version}
+  manifest:
+    runs-on: arm64
+    permissions: write-all
+    needs: builds
+    name: manifest-tool
+    env:
+      actor: ${{ github.actor }}
+      token: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      # - name: Install Act dependencies
+      #   if: ${{ env.ACT }}
+      #   run: |
+      #     apt-get update && apt-get install sudo curl -y
+      - name: dagger=0.15.2
+        run: |
+          curl -L https://dl.dagger.io/dagger/install.sh | DAGGER_VERSION=0.15.2 sh
+      # work around other runner's logging out removing credentials
+      # https://github.com/docker/login-action/issues/173#issuecomment-1079688020
+      - name: Set DOCKER_CONFIG
+        run: |
+          id=docker_configs/${RANDOM}
+          mkdir -p $HOME/${id}/.docker
+          echo "DOCKER_CONFIG=$HOME/${id}/.docker" >> $GITHUB_ENV
+      - uses: docker/login-action@v3
+        name: login=ghcr.io
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          logout: false
+      - name: dagger=manifest
+        id: config
+        run: |
+          ./bin/dagger -m ./dagger_modules call manifest \
+            --src=. \
+            --version=${version} \
+            --actor=env:actor \
+            --token=env:token
