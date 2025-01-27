@@ -1,4 +1,5 @@
 target_repo: ghcr.io/bradfordwagner/template-mirror
+flavor: mirror
 builds:
     - repo: alpine
       repo_override: ""
@@ -55,13 +56,13 @@ builds:
         - linux/arm64
     - repo: ubuntu
       repo_override: ""
-      tag: mantic
+      tag: noble
       archs:
         - linux/amd64
         - linux/arm64
     - repo: ubuntu
       repo_override: ""
-      tag: noble
+      tag: plucky
       archs:
         - linux/amd64
         - linux/arm64
