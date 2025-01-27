@@ -57,7 +57,7 @@ jobs:
       - name: dagger=build
         id: config
         run: |
-          echo ./bin/dagger -m https://github.com/bradfordwagner/dagger-container-builds@feature/init call build \
+          ./bin/dagger -m https://github.com/bradfordwagner/dagger-container-builds@feature/init call build \
             --progress=plain \
             --src=. \
             --index=${{ matrix.product.index }} \
