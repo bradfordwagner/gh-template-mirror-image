@@ -29,7 +29,7 @@ jobs:
     runs-on: ${{ matrix.product.runner }}
     permissions: write-all
     needs: product
-    name: ${{ matrix.product.index }}:${{ matrix.product.repo }}-${{ matrix.product.tag }} (${{ matrix.product.arch }})
+    name: ${{ matrix.product.display }}
     strategy:
       fail-fast: false
       matrix:
