@@ -71,7 +71,7 @@ jobs:
             --index=${{ matrix.product.index }} \
             --version=${version}
   manifest:
-    runs-on: arm64
+    runs-on: ubuntu-24.04-arm
     permissions: write-all
     needs: builds
     name: manifest-tool
